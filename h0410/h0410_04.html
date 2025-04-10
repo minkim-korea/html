@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표만들기</title>
+    <!-- 넓이 190 190 410   높이 47 40 40 -->
+    <style>
+
+*{padding: 0;margin: 0;}
+table{margin: 50px auto;text-align:center;
+   
+    border-top: 1px solid black;}
+
+th,td{border-bottom: 1px solid #ddd; }
+th{height: 40px;font-size: 18px;font-weight: 700; color:black ;background: #f7f7f7;} 
+td{height: 40px; font-size:16px; color:#666666;}
+.t2{border-left: 1px solid #ddd ; border-right: 1px solid #ddd;}
+.td2{color:#004789; font-weight: 700;}
+
+</style>
+
+
+
+</head>
+<body>
+    <table>
+        <!-- 테이블 넓이를 지정  -->
+        <colgroup>
+        <col width="190px">
+        <col width="190px">
+        <col width="410px">
+        </colgroup>
+    <tr>
+        <th>구분</th>
+        <th>등급</th>
+        <th class="t2">종합등급</th>
+        
+    </tr>
+    <tr>
+        <td>환경</td>
+        <td>A</td>
+        <td rowspan="3"
+        class="t2 td2">B+</td>
+        
+    </tr>
+    <tr>
+        <td>사회</td>
+        <td>A+</td>
+        <!-- <td class="t2 td2">B+</td> -->
+
+    </tr>
+    <tr>
+        <td>지배구조</td>
+        <td>B</td>
+        <!-- <td class="t2 td2">B+</td>
+      -->
+    </tr>
+
+
+    </table>
+
+
+
+
+
+</body>
+
+</html>
