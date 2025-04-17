@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+<style>
+    h2 + p{width: 500px; height:  40px; border: 1px solid black;
+         text-align: center;}
+         h2:hover+ p{background: black; color: white; font-weight: 700;}
+    input[type='radio']:not(aaa) + label{border: 1px solid green;}
+    input[type='radio']:not(aaa):checked+ label
+    {background: green; color: white; font-weight: 700;}
+  
+/* 초기값 -> not(임의글자를넣어야됨)  + ->뒤쪽에있는 label   뒤에있는 label 에적용해줘
+hover 마우스가 올라갈때             */
+</style>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <p>회원가입을 하시면 많은 혜택이 주어집니다. 회원가입을 해주세요.</p>
+    <form action="">
+
+   <label>성별</label><br>
+   <input type="radio" name="gender" id="male" value="male"  >
+   <label for="male">남성</label>
+   <input type="radio" name="gender" id="male" value="female"  >
+   <label for="female">여성</label>
+
+
+
+    </form>
+    
+</body>
+</html>
