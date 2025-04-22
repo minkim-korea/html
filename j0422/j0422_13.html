@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,td{text-align: center; border:1px solid black; border-collapse: collapse;}
+        th,td{width:150px; height:40px;}
+
+    </style>
+</head>
+<body>
+
+    <h2>랜덤숫자</h2>
+    <table>
+        <tr>
+            <th >번호</th>
+            <th >랜덤숫자</th>
+            <td id="answer">0</td>
+        </tr>
+    </table>
+    <h2>입력숫자</h2>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>입력값</th>
+        </tr>
+        <tbody id="tbody">
+         
+        </tbody>
+    </table>
+     <script>
+     //1-10까지 랜덤숫자 6개를 출력 , 중복된 숫자가 없도록 6개 출력하시오 
+     //arr1[]= 6개 출력  
+      let arr1 = [];
+   while(i<6){
+        
+      }
+ 
+      let i=0;
+      while(i<10){
+          let inputNum = prompt("숫자를 입력하세요.>> ");
+          arr1.push(inputNum);
+          if(randomNumber>inputNum){
+              alert("입력한 숫자가 작습니다.");
+          }else if(randomNumber<inputNum){
+              alert("입력한 숫자가 큽니다.")
+          }else{
+              alert("정답입니다.");
+              break;
+                }
+            i++;
+          }
+      document.querySelector("#answer").innerText = randomNumber;
+      let hdata = "";        
+      for(let i=0;i<arr1.length;i++){
+          hdata += `<tr>`;
+          hdata += `<td>${i+1}</td>`;
+          hdata += `<td>${arr1[i]}</td>`;
+          hdata += `</tr>`;
+      }
+      document.querySelector("#tbody").innerHTML = hdata;
+      
+      
+</script>
+</body>
+</html>
