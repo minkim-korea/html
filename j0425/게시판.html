@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{margin:0; padding: 0;}
+        #container{width:1200px; margin:30px auto; text-align: center;}
+        h2{font-size: 40px; margin-bottom:40px;}
+        table{width:1200px; margin:0 auto;}
+        table,th,td{border:1px solid black; border-collapse: collapse;}
+        th{height: 60px; background: #eee;}
+        td{height:50px;}
+        button{width:100px; height:35px;}
+        input:focus {outline: none;} /* 기본 focus형태를 제거 */
+        input:focus { border:2px solid red;}
+        input{margin-bottom: 5px;}
+        #input{margin-bottom: 30px;}
+        #input div{font-size: 30px; margin-bottom: 10px;} 
+        #input input{width:500px; height:32px; padding-left: 20px;}
+    </style>
+    <script>
+    //게시판 등록,삭제,수정을 구현하시오 
+    
+    //등록
+        //전역변수
+        let hdata = ``;
+        let no = 1;
+        let boardNo = 0; 
+        let flag = 0;
+        let title,id,bdate,bhit;
+
+ $(function(){
+   
+        $(document).on("click","#save",function(){
+        title = $("#title").val();
+        id = $("#id").val();
+        if(flag==0) boardOne();  //게시글 저장함수 호출
+        else boardOneUpdate(); // 수정 함수호출  : boardNo,title,id,bdate,bhit
+        $("#save").text("게시글 저장");
+        flag=0;
+         });//#save
+
+       function boardOne(){
+        let today = new Date(); //날짜객체선언
+        hdata = ``; //초기화
+        hdata += `<tr id="${no}">`;
+        hdata += `<td>${no}</td>`;
+        hdata += `<td>${title}</td>`;
+        hdata += `<td>${id}</td>`;
+        hdata += `<td>${today.getFullYear()}-${(today.getMonth()+1)<10?"0"+(today.getMonth()+1):(today.getMonth()+1)}-${today.getDate()}</td>`;
+        hdata += `<td>1</td>`;
+        hdata += `<td>`;
+        hdata += `<button type="button" class="updateBtn">수정</button>`;
+        hdata += `<button type="button" class="deleteBtn">삭제</button>`;
+        hdata += `</td>`;
+        hdata += `</tr>`;
+        no++; //no 1증가
+        $("#tbody").prepend(hdata); //게시글 1개 추가
+        //초기화
+        $("#title").val('');
+        $("#id").val('');
+        alert("게시글이 추가 되었습니다.");
+        }//boardOne
+   
+    //수정 
+      $(document).on("click",".updateBtn",function(){
+      
+        boardNo = $(this).closest("tr").attr("id");
+        if(confirm(`${boardNo}번 게시글을 수정하시겠습니까?`)){
+            flag = 1;
+            $("#save").text("수정저장");
+           
+            let trtd = $(this).closest("tr").children();
+            title = trtd[1].innerText; 
+            id = trtd[2].innerText;
+            bdate = trtd[3].innerText; 
+            bhit = trtd[4].innerText; 
+           
+            $("#title").val(title);
+            $("#id").val(id);
+        }//if
+       });//updateBtn
+    });//jq
+
+    function boardOneUpdate(){
+    let today = new Date(); //날짜객체선언
+    hdata = ``; //초기화
+    hdata += `<td>${boardNo}</td>`;
+    hdata += `<td>${title}</td>`;
+    hdata += `<td>${id}</td>`;
+    hdata += `<td>${today.getFullYear()}-${(today.getMonth()+1)<10?"0"+(today.getMonth()+1):(today.getMonth()+1)}-${today.getDate()}</td>`;
+    hdata += `<td>${bhit}</td>`;
+    hdata += `<td>`;
+    hdata += `<button type="button" class="updateBtn">수정</button>`;
+    hdata += `<button type="button" class="deleteBtn">삭제</button>`;
+    hdata += `</td>`;
+    $(`#${boardNo}`).html(hdata); //게시글 1개 수정
+    //초기화
+    $("#title").val('');
+    $("#id").val('');
+    alert("게시글이 수정 되었습니다.");
+    }//boardOneUpdate
+   
+   //삭제 
+   $(document).on("click",".deleteBtn",function(){
+    console.log($(this).closest("tr").attr("id"));
+    boardNo = $(this).closest("tr").attr("id");
+    if(confirm(`${boardNo}번 게시글을 삭제하시겠습니까?`)){
+        $(`#${boardNo}`).remove();
+    }
+   });//.deleteBtn
+
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h2>게시판</h2>
+        <div id="input">
+            <div>글을 입력하세요.</div>
+            <input type="text" name="title" id="title" placeholder="제목을 입력하세요"><br>
+            <input type="text" name="id" id="id" placeholder="작성자를 입력하세요"><br>
+            <button type="button" id="save">저장</button>
+        </div>
+ 
+        <table>
+            <colgroup>
+              <col width="10%">
+              <col width="*">
+              <col width="12%">
+              <col width="12%">
+              <col width="12%">
+              <col width="20%">
+            </colgroup>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th>기타</th>
+            </tr>
+            <tbody id="tbody">
+              
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+</html>
