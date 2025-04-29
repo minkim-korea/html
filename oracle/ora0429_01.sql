@@ -83,9 +83,69 @@ select * from date1;
  select to_char(sdate,'yyyy-mm-dd hh:mi:ss') from date1;
  
  
- --char 타입 
- 
- 
+ --char 타입:고정형 문자형타입 varchar2타입: 가변형 문자형타입 
+ create table mem2 (
+ juminNo char(14), -- 880101-1111111
+ id varchar2(30),
+ kor number(5,2),
+ eng number(5,2)
  );
+ --14자리 ->10자리만 입력해도 14자리 자리를 차지 
+ --속도가빠르다
+ insert into mem2 values (
+ '880101-1111111','aaa1111',99,90
+ );
+ 
+ insert into mem2 values(
+ '991231-2222222','bbb1234',80,81
+ );
+ 
+ commit;
+ 
+ select *from mem2;
+ 
+ select kor,eng from mem2;
+
+ select kor,eng,kor+eng from mem2;
+  --round ,ceil, floor 
+ select kor,eng,kor+eng,(kor+eng)/2 from mem2;
+ 
+ --nchar 국제언어 고정형문자열 타입 , nvarchar2타입 국제언어 가변형문자열 타입
+ create table mem3(
+ gender1 char(1),    --영문 1byte, 국문3byte 
+ gender2 char(2),--byte
+ gender3 char(3),
+ gender4 nchar(1)--글자수 --모든 국제언어 1개 단어를 저장형태 타입 2byte사용
+ );
+ 
+ insert into mem3 values(
+ 'M','m','m','m'
+ );
+ 
+ insert into mem3(gender3) values('남');
+ insert into mem3(gender4) values('남');
+ select *from mem3;
+ commit;
+ 
+ --select
+ --distinct 중복제거 
+ select distinct job_id from employees;
+ select * from employees; --department_id 중복제거후 출력
+ --정렬 order by 컬럼명  asc, desc 
+ select distinct department_id from employees order by department_id asc; 
+ 
+ select * from employees; --salary 순차정렬 
+ 
+ select * from employees order by salary asc;
+ );
+ -- as 닉네임  닉네임으로 사용  as 생략도가능 
+ -- 숫자형타입만 사칙연산 가능 
+ select salary,salary*1438*12,to_char(salary*1438*12,'999,999,999')  ysalary from employees order by ysalary desc;
+ 
+ select *from member;
+ --문자열타입은 사칙연산이 적용안됨 . 
+-- select id+pw from member;
+ 
+ 
 
 
