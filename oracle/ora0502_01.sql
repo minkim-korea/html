@@ -315,4 +315,52 @@ commit;
 select * from bfile;
 select * from board;
 
+--cross join  -> equi join , non-equi  join, inner join , outer join 차이점 
+
+non-equi join 
+
+create table scoreGrade(
+grade char(1),
+minscore number(3),
+maxscore number(3)
+);
+
+insert into scoregrade values ('F',0,59);
+insert into scoregrade values ('D',60,69);
+insert into scoregrade values ('C',70,79);
+insert into scoregrade values ('B',80,89);
+insert into scoregrade values ('A',90,100);
+
+select *from scoregrade;
+commit;
+
+select * from scoregrade;
+select * from stuscore;
+
+--stuscore테이블 avg 가지고 scoregrade 테이블의 grade를 출력할수있게 구성
+select sno,name,avg,grade 
+from stuscore,scoregrade
+where avg between minscore and maxscore
+;
+
+select department_id,sum(salary) from employees group by department_id;
+
+--28,17,15,30,45,49,37,35,32,12,19,27
+
+--생일 나이로 환산 해서 출력하시오 
+select hire_date from employees;
+select trunc(to_char(sysdate,'yyyy')- to_char(hire_date,'yyyy'),-1)as tyear,count(*) from employees
+group by trunc(to_char(sysdate,'yyyy')- to_char(hire_date,'yyyy'),-1);
+
+
+--부서별  평균 월급을 출력하시오 .
+select * from employees;
+select a.department_id,round(avg(salary),2),department_name from employees a,departments b
+where a.department_id=b.department_id
+group by a.department_id,department_name ;
+
+
+
+
+
 
