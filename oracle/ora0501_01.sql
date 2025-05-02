@@ -16,7 +16,7 @@ select hire_date from employees order by hire_date ;
 select hire_date from employees order by hire_date ;
 
 --숫자 함수 
-
+--숫자 날짜에도사용
 -- abs :절대값-- round() :반올림-- ceil() :올림 -- floor(): 버림 ,  trunc(): 특정자리수 잘라내기 
 -- mod (): 나머지값반환 , power(m,n) m의n승반환  
 
@@ -75,7 +75,7 @@ select mod(27,2), mod(27,5),mod(27,7) from dual;
 --stuscore sno에서 짝수만 출력하시오.
 select * from  stuscore where mod(sno,2)=0;
 
---시퀀스 :테이블 내의 유일한숫자를 자동으로 생성하는 자동번호 발생기
+--시퀀스 :테이블 내의 유일한숫자를 자동으로 생성하는 자동번호 발생기 ,순차적인 생성
 select stu_seq.nextval from dual;
 
 select stu_seq.currval from dual;
